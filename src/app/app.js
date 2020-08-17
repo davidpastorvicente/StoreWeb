@@ -4,20 +4,16 @@ import './app.css';
 import Product from '../product/product';
 import Http from '../services/http';
 
+const http = new Http();
+
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {products:[]};
-    this.loadData = this.loadData.bind(this);
-    this.productList = this.productList.bind(this);
-    this.loadData();
-  }
 
-  loadData = () => {
-    const http = new Http();
-    var self = this;
-    http.getProducts().then(data => self.setState({products: data}));
+    this.productList = this.productList.bind(this);
+    http.getProducts().then(data => this.setState({products: data}));
   }
 
   productList = () => {
@@ -26,7 +22,6 @@ class App extends Component {
         <Product title={product.title} price={product.price} url={product.url} />
       </div>
     );
-
     return (list);
   }
 
