@@ -1,0 +1,9 @@
+.miniproduct a {
+  font-size: 12px;
+}
+
+.miniproduct p {
+  display: inline;
+  margin-left: 15px;
+  font-size: 18px;
+}
