@@ -37,7 +37,7 @@ class Wishlist extends Component {
 
   render() {
     return(
-      <div className="card product">
+      <div className="card wishlist">
         <div className="card-block">
           <h4 className="card-title">Wishlist</h4>
           <ul className="list-group">

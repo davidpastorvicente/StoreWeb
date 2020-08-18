@@ -19,7 +19,7 @@ class App extends Component {
 
   productList = () => {
     const list = this.state.products.map(product =>
-      <div className="col-sm-4" key={product._id}>
+      <div className="col-lg-6 col-xl-4" key={product._id}>
         <Product title={product.title} price={product.price} url={product.url} />
       </div>
     );
@@ -34,12 +34,12 @@ class App extends Component {
         </header>
         <div className="container-fluid App-main">
           <div className="row">
-            <div className="col-sm-8">
+            <div className="col-md-6 col-lg-8">
               <div className="row">
                 {this.productList()}
               </div>
             </div>
-            <div className="col-sm-4">
+            <div className="col-md-6 col-lg-4">
               <Wishlist />
             </div>
           </div>

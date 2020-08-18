@@ -1,4 +1,7 @@
 .product {
   width: 20rem;
   padding: 2rem;
+  margin: auto;
+  margin-bottom: 2.5rem;
+  max-width: 100%;
 }
