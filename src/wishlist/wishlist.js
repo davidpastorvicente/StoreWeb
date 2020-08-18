@@ -1,31 +1,26 @@
 import React, {Component} from 'react';
 import './wishlist.css';
+import Data from '../services/data';
+import Notification, {NOTIF_WCHANGE} from '../services/notification'
 import Miniproduct from '../miniproduct/miniproduct';
+
+let notif = new Notification();
 
 class Wishlist extends Component {
   constructor(props) {
     super(props);
-    this.state = {wishlist: [
-      {
-        title: "A",
-        price: 23,
-        _id: "aosl"
-      },
-      {
-        title: "B",
-        price: 233,
-        _id: "aosls"
-      },
-      {
-        title: "C",
-        price: 2323,
-        _id: "aossdl"
-      }
-    ]};
-
+    this.state = {wishlist: []};
     this.createWishlist = this.createWishlist.bind(this);
+    this.modifyWishlist = this.modifyWishlist.bind(this);
   }
 
+  componentDidMount() {
+    notif.add(NOTIF_WCHANGE, this, this.modifyWishlist);
+  }
+
+  componentWillUnmount() {
+    notif.remove(NOTIF_WCHANGE, this);
+  }
 
   createWishlist = () => {
     const list = this.state.wishlist.map(data =>
@@ -33,6 +28,10 @@ class Wishlist extends Component {
     );
 
     return (list);
+  }
+
+  modifyWishlist = newWishlist => {
+    this.setState({wishlist: newWishlist});
   }
 
   render() {
