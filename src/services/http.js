@@ -1,6 +1,8 @@
 import 'whatwg-fetch';
+import Data from './data';
 
 let instance = null;
+let data = new Data();
 
 class Http {
   constructor() {
@@ -24,22 +26,22 @@ class Http {
     return promise;
   }
 
-  putWishlist = _id => {
+  putWishlist = product => {
     fetch('http://localhost:3001/wishlist/add', {
        method: 'PUT', headers: {'Content-Type': 'application/json'},
        body: JSON.stringify({
-         productId: _id,
+         productId: product._id,
          wishlistId: "5f3970d699980309e885862e"})
-     }).then(res=>res.json()).then(res => console.log(res))
+     }).then(response => data.add(product))
   }
 
-  deleteWishlist = _id => {
+  deleteWishlist = product => {
     fetch('http://localhost:3001/wishlist/del', {
        method: 'DELETE', headers: {'Content-Type': 'application/json'},
        body: JSON.stringify({
-         productId: _id,
+         productId: product._id,
          wishlistId: "5f3970d699980309e885862e"})
-     }).then(res=>res.json()).then(res => console.log(res))
+     }).then(response => data.remove(product))
   }
 }
 

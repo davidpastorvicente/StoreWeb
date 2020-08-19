@@ -24,14 +24,8 @@ class Product extends Component {
   }
 
   click = () => {
-    if(this.state.added) {
-      data.remove(this.props.product);
-      http.deleteWishlist(this.props.product._id);
-    }
-    else {
-      data.add(this.props.product);
-      http.putWishlist(this.props.product._id);
-    }
+    if(this.state.added) http.deleteWishlist(this.props.product);
+    else http.putWishlist(this.props.product);
   }
 
   modifyItem = () => {

@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import './miniproduct.css';
 import Http from '../services/http';
-import Data from '../services/data';
 
 let http = new Http();
-let data = new Data();
 
 class Miniproduct extends Component {
   constructor(props) {
@@ -13,8 +11,7 @@ class Miniproduct extends Component {
   }
 
   remove = () => {
-    data.remove(this.props.product);
-    http.deleteWishlist(this.props.product._id);
+    http.deleteWishlist(this.props.product);
   }
 
   render() {
