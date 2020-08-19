@@ -16,7 +16,11 @@ class Wishlist extends Component {
     this.initWishlist = this.initWishlist.bind(this);
     this.createWishlist = this.createWishlist.bind(this);
     this.modifyWishlist = this.modifyWishlist.bind(this);
-    this.initWishlist();
+
+    http.getWishlist().then(wishs => {
+      this.setState({wishlist: wishs[0].products});
+      this.initWishlist(this.state.wishlist);
+    });
   }
 
   componentDidMount() {
@@ -27,12 +31,9 @@ class Wishlist extends Component {
     notif.remove(NOTIF_WCHANGE, this);
   }
 
-  initWishlist = () => {
-    http.getWishlist().then(wishs => {
-      this.setState({wishlist: wishs[0].products});
-      for(var x=0; x<this.state.wishlist.length; x++)
-        data.add(this.state.wishlist[x]);
-    });
+  initWishlist = prods => {
+    for(var x=0; x<prods.length; x++)
+      data.add(prods[x]);
   }
 
   createWishlist = () => {

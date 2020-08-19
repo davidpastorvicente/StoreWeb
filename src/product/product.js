@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import './product.css';
+import Http from '../services/http';
 import Data from '../services/data';
 import Notification, {NOTIF_WCHANGE} from '../services/notification';
 
+let http = new Http();
 let data = new Data();
 let notif = new Notification();
 
@@ -24,7 +26,10 @@ class Product extends Component {
   click = () => {
     if(this.state.added)
       data.remove(this.props.product);
-    else data.add(this.props.product);
+    else {
+      data.add(this.props.product);
+      http.putWishlist(this.props.product._id);
+    }
   }
 
   modifyItem = () => {
