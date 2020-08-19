@@ -25,12 +25,21 @@ class Http {
   }
 
   putWishlist = _id => {
-    fetch('http://localhost:3001/wishlist/add', {method: 'PUT',
-                                             headers: {'Content-Type': 'application/json'},
-                                             body: JSON.stringify({
-                                               productId: _id,
-                                               wishlistId: "5f38489685a61f22dc5460c2"})}
-         ).then(response => console.log(response));
+    fetch('http://localhost:3001/wishlist/add', {
+       method: 'PUT', headers: {'Content-Type': 'application/json'},
+       body: JSON.stringify({
+         productId: _id,
+         wishlistId: "5f3970d699980309e885862e"})
+     }).then(res=>res.json()).then(res => console.log(res))
+  }
+
+  deleteWishlist = _id => {
+    fetch('http://localhost:3001/wishlist/del', {
+       method: 'DELETE', headers: {'Content-Type': 'application/json'},
+       body: JSON.stringify({
+         productId: _id,
+         wishlistId: "5f3970d699980309e885862e"})
+     }).then(res=>res.json()).then(res => console.log(res))
   }
 }
 

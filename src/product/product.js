@@ -24,8 +24,10 @@ class Product extends Component {
   }
 
   click = () => {
-    if(this.state.added)
+    if(this.state.added) {
       data.remove(this.props.product);
+      http.deleteWishlist(this.props.product._id);
+    }
     else {
       data.add(this.props.product);
       http.putWishlist(this.props.product._id);
@@ -46,9 +48,9 @@ class Product extends Component {
         <img className="card-img-top img-fluid" alt="Product" src={this.props.product.url}></img>
         <div className="card-block">
           <h4 className="card-title">{this.props.product.title}</h4>
-          <p className="card-text">Price: {this.props.product.price}</p>
-          <a href="#" onClick={() => this.click()} className={btn}>
-          {this.state.added ? "Remove from wishlist" : "Add to wishlist"}</a>
+          <p className="card-text">Price: {this.props.product.price} €</p>
+          <button onClick={() => this.click()} className={btn}>
+          {this.state.added ? "Remove from wishlist" : "Add to wishlist"}</button>
         </div>
       </div>
     );
