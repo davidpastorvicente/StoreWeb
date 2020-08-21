@@ -18,7 +18,7 @@ class Http {
     return promise;
   }
 
-  getWishlist = () => {
+  getWishlists = () => {
     var promise = new Promise((resolve, reject) => {
       fetch('http://localhost:3001/wishlist')
       .then(response => resolve(response.json()))
@@ -26,22 +26,22 @@ class Http {
     return promise;
   }
 
-  putWishlist = product => {
+  putOnWishlist = (product, wishlist) => {
     fetch('http://localhost:3001/wishlist/add', {
        method: 'PUT', headers: {'Content-Type': 'application/json'},
        body: JSON.stringify({
          productId: product._id,
-         wishlistId: "5f3970d699980309e885862e"})
-     }).then(response => data.add(product))
+         wishlistId: wishlist._id})
+     }).then(response => data.add(product, wishlist))
   }
 
-  deleteWishlist = product => {
+  deleteFromWishlist = (product, wishlist) => {
     fetch('http://localhost:3001/wishlist/del', {
        method: 'DELETE', headers: {'Content-Type': 'application/json'},
        body: JSON.stringify({
          productId: product._id,
-         wishlistId: "5f3970d699980309e885862e"})
-     }).then(response => data.remove(product))
+         wishlistId: wishlist._id})
+     }).then(response => data.remove(product, wishlist))
   }
 }
 

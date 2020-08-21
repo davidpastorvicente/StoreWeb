@@ -1,5 +1,3 @@
-export const NOTIF_WCHANGE = "notif_wishlist_changed";
-
 let instance = null;
 var observers = {};
 

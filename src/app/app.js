@@ -5,22 +5,33 @@ import Product from '../product/product';
 import Wishlist from '../wishlist/wishlist';
 import Http from '../services/http';
 
-const http = new Http();
+let http = new Http();
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {products:[]};
+    this.state = {products: [], wishlists: []};
 
     this.productList = this.productList.bind(this);
-    http.getProducts().then(data => this.setState({products: data}));
+    this.wishlistList = this.wishlistList.bind(this);
+    http.getWishlists().then(wishs => this.setState({wishlists: wishs}));
+    http.getProducts().then(prods => this.setState({products: prods}));
   }
 
   productList = () => {
     const list = this.state.products.map(product =>
       <div className="col-lg-6 col-xl-4" key={product._id}>
-        <Product product={product} />
+        <Product product={product} wishlists={this.state.wishlists}/>
+      </div>
+    );
+    return (list);
+  }
+
+  wishlistList = () => {
+    const list = this.state.wishlists.map(wishlist =>
+      <div className="col-12" key={wishlist._id}>
+        <Wishlist wishlist={wishlist} />
       </div>
     );
     return (list);
@@ -40,7 +51,9 @@ class App extends Component {
               </div>
             </div>
             <div className="col-md-6 col-lg-4">
-              <Wishlist />
+              <div className="row">
+                {this.wishlistList()}
+              </div>
             </div>
           </div>
         </div>

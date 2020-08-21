@@ -11,7 +11,7 @@ class Miniproduct extends Component {
   }
 
   remove = () => {
-    http.deleteWishlist(this.props.product);
+    http.deleteFromWishlist(this.props.product, this.props.wishlist);
   }
 
   render() {

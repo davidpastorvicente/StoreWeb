@@ -1,58 +1,50 @@
 import React, {Component} from 'react';
 import './wishlist.css';
-import Data from '../services/data';
-import Notification, {NOTIF_WCHANGE} from '../services/notification';
 import Http from '../services/http';
+import Data from '../services/data';
+import Notification from '../services/notification';
 import Miniproduct from '../miniproduct/miniproduct';
 
-let notif = new Notification();
 let http = new Http();
+let notif = new Notification();
 let data = new Data();
 
 class Wishlist extends Component {
   constructor(props) {
     super(props);
-    this.state = {wishlist: []};
-    this.initWishlist = this.initWishlist.bind(this);
+    this.state = {listProducts: this.props.wishlist.products};
     this.createWishlist = this.createWishlist.bind(this);
     this.modifyWishlist = this.modifyWishlist.bind(this);
 
-    http.getWishlist().then(wishs => {
-      this.setState({wishlist: wishs[0].products});
-      this.initWishlist(this.state.wishlist);
-    });
+    http.getProducts().then(prods =>notif.post(this.props.wishlist._id, this.props.wishlist));
+
   }
 
   componentDidMount() {
-    notif.add(NOTIF_WCHANGE, this, this.modifyWishlist);
+    notif.add(this.props.wishlist._id, this, this.modifyWishlist);
   }
 
   componentWillUnmount() {
-    notif.remove(NOTIF_WCHANGE, this);
-  }
-
-  initWishlist = prods => {
-    for(var x=0; x<prods.length; x++)
-      data.add(prods[x]);
+    notif.remove(this.props.wishlist._id, this);
   }
 
   createWishlist = () => {
-    const list = this.state.wishlist.map(data =>
-      <Miniproduct product={data} key={data._id} />
+    const list = this.state.listProducts.map(product =>
+      <Miniproduct product={product} key={product._id} wishlist={this.props.wishlist} />
     );
 
     return (list);
   }
 
   modifyWishlist = newWishlist => {
-    this.setState({wishlist: newWishlist});
+    this.setState({listProducts: newWishlist.products});
   }
 
   render() {
     return(
       <div className="card wishlist">
         <div className="card-block">
-          <h4 className="card-title">Wishlist</h4>
+          <h4 className="card-title">Wishlist {this.props.wishlist.title}</h4>
           <ul className="list-group">
            {this.createWishlist()}
           </ul>

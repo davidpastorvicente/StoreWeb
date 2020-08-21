@@ -1,8 +1,7 @@
-import Notification, {NOTIF_WCHANGE} from './notification'
+import Notification from './notification'
 
-let ns = new Notification();
+let notif = new Notification();
 let instance = null;
-var wishlist = [];
 
 class Data {
   constructor() {
@@ -10,23 +9,26 @@ class Data {
     return instance;
   }
 
-  add = item => {
-    wishlist.push(item);
-    ns.post(NOTIF_WCHANGE, wishlist);
+  add = (item, wishlist) => {
+    var list = wishlist.products;
+    list.push(item);
+    notif.post(wishlist._id, wishlist);
   };
 
-  isAdded = item => {
-    for(var x=0; x<wishlist.length; x++)
-      if(wishlist[x]._id === item._id)
+  isAdded = (item, wishlist) => {
+    var list = wishlist.products;
+    for(var x=0; x<list.length; x++)
+      if(list[x]._id === item._id)
         return true;
-    return false; 
-  }
+    return false;
+  };
 
-  remove = item => {
-    for(var x=0; x<wishlist.length; x++)
-      if(wishlist[x]._id === item._id) {
-        wishlist.splice(x, 1);
-        ns.post(NOTIF_WCHANGE, wishlist);
+  remove = (item, wishlist) => {
+    var list = wishlist.products;
+    for(var x=0; x<list.length; x++)
+      if(list[x]._id === item._id) {
+        list.splice(x, 1);
+        notif.post(wishlist._id, wishlist);
         break;
       }
   };
