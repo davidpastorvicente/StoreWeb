@@ -11,31 +11,33 @@ let notif = new Notification();
 class Product extends Component {
   constructor(props) {
     super(props);
-    this.initStates = this.initStates.bind(this);
+    this.state = {added: {}};
+
     this.modifyItem = this.modifyItem.bind(this);
     this.classAdded = this.classAdded.bind(this);
     this.msgAdded = this.msgAdded.bind(this);
     this.click = this.click.bind(this);
     this.listButtons = this.listButtons.bind(this);
-    this.state = {added: {}};
-    var listWishlists = this.props.wishlists;
-    for(var x=0; x<listWishlists.length; x++)
-      notif.add(listWishlists[x]._id, this, this.modifyItem);
   }
 
-  initStates = () => {
+  componentDidMount() {
     var listWishlists = this.props.wishlists;
     for(var x=0; x<listWishlists.length; x++) {
-      var added = this.state.added;
-      added[listWishlists[x]._id] = data.isAdded(this.props.product, listWishlists[x]);
-      this.setState(added);
+      notif.add(listWishlists[x]._id, this, this.modifyItem);
+      this.modifyItem(listWishlists[x]);
     }
   }
 
+  componentWillUnmount() {
+    var listWishlists = this.props.wishlists;
+    for(var x=0; x<listWishlists.length; x++)
+      notif.remove(listWishlists[x]._id, this);
+  }
+
   modifyItem = wishlist => {
-    var added = this.state.added;
-    added[wishlist._id] = data.isAdded(this.props.product, wishlist);
-    this.setState(added);
+    var newAdded = this.state.added;
+    newAdded[wishlist._id] = data.isAdded(this.props.product, wishlist);
+    this.setState({added: newAdded});
   }
 
   classAdded = wishlist => this.state.added[wishlist._id] ? "btn btn-danger" : "btn btn-primary"

@@ -1,23 +1,19 @@
 import React, {Component} from 'react';
 import './wishlist.css';
-import Http from '../services/http';
-import Data from '../services/data';
 import Notification from '../services/notification';
 import Miniproduct from '../miniproduct/miniproduct';
 
-let http = new Http();
 let notif = new Notification();
-let data = new Data();
 
 class Wishlist extends Component {
   constructor(props) {
     super(props);
     this.state = {listProducts: this.props.wishlist.products};
+    
     this.createWishlist = this.createWishlist.bind(this);
     this.modifyWishlist = this.modifyWishlist.bind(this);
 
-    http.getProducts().then(prods =>notif.post(this.props.wishlist._id, this.props.wishlist));
-
+    notif.post(this.props.wishlist._id, this.props.wishlist);
   }
 
   componentDidMount() {

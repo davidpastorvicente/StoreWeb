@@ -7,6 +7,7 @@ let http = new Http();
 class Miniproduct extends Component {
   constructor(props) {
     super(props);
+    
     this.remove = this.remove.bind(this);
   }
 

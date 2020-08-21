@@ -15,8 +15,11 @@ class App extends Component {
 
     this.productList = this.productList.bind(this);
     this.wishlistList = this.wishlistList.bind(this);
-    http.getWishlists().then(wishs => this.setState({wishlists: wishs}));
-    http.getProducts().then(prods => this.setState({products: prods}));
+  }
+
+  componentDidMount() {
+    http.getWishlists().then(wishs => this.setState({wishlists: wishs}, () =>
+    http.getProducts().then(prods => this.setState({products: prods}))));
   }
 
   productList = () => {
@@ -38,6 +41,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="App">
         <header className="App-header">
