@@ -40,7 +40,7 @@ class Product extends Component {
     this.setState({added: newAdded});
   }
 
-  classAdded = wishlist => this.state.added[wishlist._id] ? "btn btn-danger" : "btn btn-primary"
+  classAdded = wishlist => this.state.added[wishlist._id] ? "del" : "add"
 
   msgAdded = wishlist => this.state.added[wishlist._id] ? "-" : "+"
 
@@ -51,8 +51,9 @@ class Product extends Component {
 
   listButtons = () => {
     const list = this.props.wishlists.map(wishlist =>
-      <button onClick={() => this.click(wishlist)} className={this.classAdded(wishlist)}
-        key={wishlist._id}>{this.msgAdded(wishlist)}</button>
+      <button onClick={() => this.click(wishlist)} className="dropdown-item" key={wishlist._id}>
+        <span className={this.classAdded(wishlist)}>{this.msgAdded(wishlist)}</span> {wishlist.title}
+      </button>
     );
     return (list);
   }
@@ -64,8 +65,12 @@ class Product extends Component {
         <div className="card-block">
           <h4 className="card-title">{this.props.product.title}</h4>
           <p className="card-text">Price: {this.props.product.price} €</p>
-          <div className="card-buttons">
-            {this.listButtons()}
+          <div className="btn-group" role="group">
+            <button id="wishGroup" type="button" className="btn btn-secondary dropdown-toggle"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Añadir a la wishlist</button>
+            <div className="dropdown-menu" aria-labelledby="wishGroup">
+              {this.listButtons()}
+            </div>
           </div>
         </div>
       </div>
