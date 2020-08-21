@@ -20,12 +20,5 @@
   font-weight: 700;
   line-height: 0.8;
   border-radius: 5px;
-}
-
-.add {
-  background-color: blue;
-}
-
-.del {
-  background-color: red;
+  margin-right: 6px;
 }

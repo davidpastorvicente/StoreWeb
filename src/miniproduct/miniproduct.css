@@ -6,4 +6,5 @@
 .miniproduct p {
   display: inline;
   font-size: 18px;
+  vertical-align: middle;
 }

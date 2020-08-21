@@ -24,11 +24,25 @@
 }
 
 .App-main {
-  padding: 2rem;
+  padding: 30px;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.newWish {
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.newWish input {
+  display: inline-block;
+  width: auto;
+  margin: auto;
+  vertical-align: middle;
 }
 
 @keyframes App-logo-spin {
