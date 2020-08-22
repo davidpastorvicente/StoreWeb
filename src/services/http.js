@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import Data from './data';
-import Notification , {NEW} from './notification';
+import Notification , {NEW, DEL} from './notification';
 
 let instance = null;
 let data = new Data();
@@ -33,6 +33,13 @@ class Http {
        method: 'POST', headers: {'Content-Type': 'application/json'},
        body: JSON.stringify({title: name})
      }).then(response => response.json()).then(response => notif.post(NEW, response))
+  }
+
+  deleteWishlist = wishlist => {
+    fetch('http://localhost:3001/wishlist', {
+       method: 'DELETE', headers: {'Content-Type': 'application/json'},
+       body: JSON.stringify({wishlistId: wishlist._id})
+     }).then(response => notif.post(DEL, wishlist))
   }
 
   putOnWishlist = (product, wishlist) => {

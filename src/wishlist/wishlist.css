@@ -1,7 +1,30 @@
 .wishlist {
-  width: 30rem;
-  padding: 2rem;
-  margin: auto;
   max-width: 100%;
+  margin: auto;
   margin-bottom: 30px;
+  width: 30rem;
+}
+
+.wishlist .card-head {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0;
+}
+
+.wishlist .card-header button {
+  font-size: 12px;
+  line-height: 0;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.wishlist .card-block {
+  padding: 1rem 2rem 2rem;
+}
+
+.wishlist .card-title {
+  margin-bottom: 1rem;
 }

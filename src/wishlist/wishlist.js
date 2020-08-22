@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import './wishlist.css';
+import Http from '../services/http'
 import Notification from '../services/notification';
 import Miniproduct from '../miniproduct/miniproduct';
 
+let http = new Http();
 let notif = new Notification();
 
 class Wishlist extends Component {
@@ -12,6 +14,7 @@ class Wishlist extends Component {
 
     this.createWishlist = this.createWishlist.bind(this);
     this.modifyWishlist = this.modifyWishlist.bind(this);
+    this.deleteWishlist = this.deleteWishlist.bind(this);
 
     notif.post(this.props.wishlist._id, this.props.wishlist);
   }
@@ -34,11 +37,20 @@ class Wishlist extends Component {
     this.setState({listProducts: newWishlist.products});
   }
 
+  deleteWishlist(event) {
+    http.deleteWishlist(this.props.wishlist);
+    event.preventDefault();
+  }
+
   render() {
     return(
       <div className="card wishlist">
+        <div className="card-header">
+          <h3 className="card-head float-left d-inline">Wishlist</h3>
+          <button className="btn btn-outline-danger float-right" onClick={this.deleteWishlist}>X</button>
+        </div>
         <div className="card-block">
-          <h4 className="card-title">Wishlist {this.props.wishlist.title}</h4>
+          <h4 className="card-title">{this.props.wishlist.title}</h4>
           <ul className="list-group">
            {this.createWishlist()}
           </ul>

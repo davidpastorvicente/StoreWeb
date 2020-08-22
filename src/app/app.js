@@ -4,7 +4,7 @@ import './app.css';
 import Product from '../product/product';
 import Wishlist from '../wishlist/wishlist';
 import Http from '../services/http';
-import Notification, {NEW} from '../services/notification';
+import Notification, {NEW, DEL} from '../services/notification';
 
 let http = new Http();
 let notif = new Notification();
@@ -18,12 +18,14 @@ class App extends Component {
     this.productList = this.productList.bind(this);
     this.wishlistList = this.wishlistList.bind(this);
     this.addWishlist = this.addWishlist.bind(this);
+    this.removeWishlist = this.removeWishlist.bind(this);
     this.handleTrue = this.handleTrue.bind(this);
     this.handleFalse = this.handleFalse.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     notif.add(NEW, this, this.addWishlist);
+    notif.add(DEL, this, this.removeWishlist);
   }
 
   componentDidMount() {
@@ -50,6 +52,16 @@ class App extends Component {
     listWishlists.push(wishlist);
     this.setState({wishlists: listWishlists});
     this.setState({click: false});
+  }
+
+  removeWishlist = wishlist => {
+    var listWishlists = this.state.wishlists;
+    for(var x=0; x<listWishlists.length; x++)
+      if(listWishlists[x]._id === wishlist._id) {
+        listWishlists.splice(x, 1);
+        break;
+      }
+    this.setState({wishlists: listWishlists});
   }
 
   handleTrue(event) {

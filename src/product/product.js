@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './product.css';
 import Http from '../services/http';
 import Data from '../services/data';
-import Notification from '../services/notification';
+import Notification, {NEW} from '../services/notification';
 
 let http = new Http();
 let data = new Data();
@@ -13,11 +13,14 @@ class Product extends Component {
     super(props);
     this.state = {added: {}};
 
+    this.addWishlist = this.addWishlist.bind(this);
     this.modifyItem = this.modifyItem.bind(this);
     this.classAdded = this.classAdded.bind(this);
     this.msgAdded = this.msgAdded.bind(this);
     this.click = this.click.bind(this);
     this.listButtons = this.listButtons.bind(this);
+
+    notif.add(NEW, this, this.addWishlist);
   }
 
   componentDidMount() {
@@ -32,6 +35,10 @@ class Product extends Component {
     var listWishlists = this.props.wishlists;
     for(var x=0; x<listWishlists.length; x++)
       notif.remove(listWishlists[x]._id, this);
+  }
+
+  addWishlist = wishlist => {
+    notif.add(wishlist._id, this, this.modifyItem);
   }
 
   modifyItem = wishlist => {
