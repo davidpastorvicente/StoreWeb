@@ -1,3 +1,5 @@
+export const NEW = "newWishlist";
+
 let instance = null;
 var observers = {};
 

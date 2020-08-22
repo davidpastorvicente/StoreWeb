@@ -26,7 +26,7 @@ class Wishlist extends Component {
 
   createWishlist = () => {
     const list = this.state.listProducts.map(product =>
-      <Miniproduct product={product} key={product._id} wishlist={this.props.wishlist} />);
+      <Miniproduct product={product} key={product._id} wishlist={this.props.wishlist}/>);
     return (list);
   }
 

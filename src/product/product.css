@@ -7,7 +7,8 @@
 }
 
 .dropdown-item {
-  padding: .25rem 1.0rem;
+  height: 41px;
+  padding: .5rem 1.0rem;
 }
 
 .dropdown-item span {
@@ -17,6 +18,7 @@
   height: 25px;
   color: white;
   text-align: center;
+  vertical-align: middle;
   font-weight: 700;
   line-height: 0.8;
   border-radius: 5px;
