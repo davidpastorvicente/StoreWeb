@@ -19,8 +19,7 @@ class App extends Component {
     this.wishlistList = this.wishlistList.bind(this);
     this.addWishlist = this.addWishlist.bind(this);
     this.removeWishlist = this.removeWishlist.bind(this);
-    this.handleTrue = this.handleTrue.bind(this);
-    this.handleFalse = this.handleFalse.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -64,13 +63,8 @@ class App extends Component {
     this.setState({wishlists: listWishlists});
   }
 
-  handleTrue(event) {
-    this.setState({click: true});
-    event.preventDefault();
-  }
-
-  handleFalse(event) {
-    this.setState({click: false});
+  handleClick(event, click) {
+    this.setState({click: click});
     event.preventDefault();
   }
 
@@ -99,15 +93,15 @@ class App extends Component {
             <div className="col-md-6 col-lg-4">
               <div className="row">
                 <div className={this.state.click ? "col-12 d-none" : "col-12 d-block"}>
-                  <button className="btn btn-primary newWish" onClick={this.handleTrue}>Crear una wishlist</button>
+                  <button className="btn btn-primary newWish" onClick={e => this.handleClick(e, true)}>Crear una wishlist</button>
                 </div>
 
                 <div className={this.state.click ? "col-12 d-block" : "col-12 d-none"}>
                   <form className="form-inline newWish">
-                    <label className="sr-only" htmlFor="name">Name</label>
+                    <label className="sr-only" htmlFor="name">Nombre</label>
                     <input type="text" className="form-control mr-2" id="name" onChange={this.handleName} placeholder="Introduzca el título"/>
                     <button className="btn btn-primary mr-2" onClick={this.handleSubmit}>Crear</button>
-                    <button className="btn btn-danger" onClick={this.handleFalse}>Cancelar</button>
+                    <button className="btn btn-danger" onClick={e => this.handleClick(e, false)}>Cancelar</button>
                   </form>
                 </div>
                 {this.wishlistList()}

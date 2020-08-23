@@ -1,9 +1,17 @@
 .product {
   width: 20rem;
-  padding: 2rem;
   margin: auto;
   margin-bottom: 30px;
   max-width: 100%;
+}
+
+.product .card-block {
+  padding: 1rem 2rem 2rem;
+}
+
+.product .card-block img {
+  margin-bottom: 1rem;
+  border: 1px solid rgba(0,0,0,.125);
 }
 
 .dropdown-item {
@@ -15,4 +23,8 @@
   font-size: 25px;
   vertical-align: text-top;
   margin-right: 8px;
+}
+
+.dropdown-toggle::after {
+  margin-left: 0.75rem;
 }

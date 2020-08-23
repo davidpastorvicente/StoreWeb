@@ -10,6 +10,17 @@
 .miniproduct p {
   display: inline;
   font-size: 18px;
+  padding: 7px 0px 7px 10px;
+  border-radius: 5px;
+  background-color: rgba(0,0,0,.125);
+  border: 3px solid rgba(0,0,0,.01);
+}
+
+.miniproduct b {
+  margin-left: 5px;
+  padding: 7px 10px;
+  border-radius: 5px;
+  color: white;
 }
 
 .miniproduct i {

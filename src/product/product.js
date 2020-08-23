@@ -63,10 +63,14 @@ class Product extends Component {
   render() {
     return(
       <div className="card product">
-        <img className="card-img-top img-fluid" alt="Product" src={this.props.product.url}></img>
+        <div className="card-header">
+          <h3 className="card-head float-left d-inline">Producto</h3>
+        </div>
+
         <div className="card-block">
+          <img className="card-img-top img-fluid" alt="Product" src={this.props.product.url}></img>
           <h4 className="card-title">{this.props.product.title}</h4>
-          <p className="card-text">Price: {this.props.product.price} €</p>
+          <p className="card-text">Precio: {this.props.product.price} €</p>
           <div className="btn-group" role="group">
             <button id="wishGroup" type="button" className="btn btn-primary dropdown-toggle"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Añadir a la wishlist</button>

@@ -18,7 +18,7 @@ class Miniproduct extends Component {
   render() {
     return(
       <li className="list-group-item miniproduct">
-        <p>{this.props.product.title} | <b>{this.props.product.price} €</b></p>
+        <p>{this.props.product.title} <b className="bg-primary">{this.props.product.price} €</b></p>
         <i className="fas fa-trash-alt text-danger float-right" onClick={this.remove}></i>
       </li>
     );

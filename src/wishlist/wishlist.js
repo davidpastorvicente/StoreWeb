@@ -55,7 +55,7 @@ class Wishlist extends Component {
           <ul className="list-group">
            {this.createWishlist()}
           </ul>
-        </div>
+        </div>       
       </div>
     );
   }
