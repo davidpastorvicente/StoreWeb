@@ -16,7 +16,6 @@ class Product extends Component {
     this.addWishlist = this.addWishlist.bind(this);
     this.modifyItem = this.modifyItem.bind(this);
     this.classAdded = this.classAdded.bind(this);
-    this.msgAdded = this.msgAdded.bind(this);
     this.click = this.click.bind(this);
     this.listButtons = this.listButtons.bind(this);
 
@@ -47,9 +46,7 @@ class Product extends Component {
     this.setState({added: newAdded});
   }
 
-  classAdded = wishlist => this.state.added[wishlist._id] ? "bg-danger" : "bg-primary"
-
-  msgAdded = wishlist => this.state.added[wishlist._id] ? "-" : "+"
+  classAdded = wishlist => this.state.added[wishlist._id] ? "fas fa-minus-square text-danger" : "fas fa-plus-square text-primary"
 
   click = wishlist => {
     if(this.state.added[wishlist._id]) http.deleteFromWishlist(this.props.product, wishlist);
@@ -59,8 +56,7 @@ class Product extends Component {
   listButtons = () => {
     const list = this.props.wishlists.map(wishlist =>
       <button onClick={() => this.click(wishlist)} className="dropdown-item" key={wishlist._id}>
-        <span className={this.classAdded(wishlist)}>{this.msgAdded(wishlist)}</span> {wishlist.title}
-      </button>);
+        <i className={this.classAdded(wishlist)}></i>{wishlist.title}</button>);
     return (list);
   }
 

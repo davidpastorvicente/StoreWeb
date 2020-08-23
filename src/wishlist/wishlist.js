@@ -47,7 +47,8 @@ class Wishlist extends Component {
       <div className="card wishlist">
         <div className="card-header">
           <h3 className="card-head float-left d-inline">Wishlist</h3>
-          <button className="btn btn-outline-danger float-right" onClick={this.deleteWishlist}>X</button>
+          <i className="fas fa-minus-square text-danger float-right" onClick={this.deleteWishlist}></i>
+          <i className="fas fa-pen-square text-primary float-right mr-2"></i>
         </div>
         <div className="card-block">
           <h4 className="card-title">{this.props.wishlist.title}</h4>

@@ -7,7 +7,7 @@ let http = new Http();
 class Miniproduct extends Component {
   constructor(props) {
     super(props);
-    
+
     this.remove = this.remove.bind(this);
   }
 
@@ -19,7 +19,7 @@ class Miniproduct extends Component {
     return(
       <li className="list-group-item miniproduct">
         <p>{this.props.product.title} | <b>{this.props.product.price} €</b></p>
-        <button className="btn btn-outline-danger" onClick={() => this.remove()}>X</button>
+        <i className="fas fa-trash-alt text-danger float-right" onClick={this.remove}></i>
       </li>
     );
   }

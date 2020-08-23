@@ -9,7 +9,7 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 18px;
   margin: 0;
 }
 
@@ -19,6 +19,14 @@
   padding: 0;
   width: 20px;
   height: 20px;
+}
+
+.wishlist .card-header i {
+  font-size: 22px;
+}
+
+i:hover {
+  cursor: pointer;
 }
 
 .wishlist .card-block {
