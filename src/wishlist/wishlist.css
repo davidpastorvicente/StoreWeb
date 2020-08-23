@@ -34,5 +34,19 @@ i:hover {
 }
 
 .wishlist .card-title {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.editWish {
+  display: block;
+  margin: auto;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.editWish input {
+  display: inline-block;
+  width: auto;
+  margin: auto;
+  vertical-align: middle;
 }

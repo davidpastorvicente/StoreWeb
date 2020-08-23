@@ -4,7 +4,7 @@ import './app.css';
 import Product from '../product/product';
 import Wishlist from '../wishlist/wishlist';
 import Http from '../services/http';
-import Notification, {NEW, DEL} from '../services/notification';
+import Notification, {NEW, DEL, MOD} from '../services/notification';
 
 let http = new Http();
 let notif = new Notification();
@@ -19,12 +19,14 @@ class App extends Component {
     this.wishlistList = this.wishlistList.bind(this);
     this.addWishlist = this.addWishlist.bind(this);
     this.removeWishlist = this.removeWishlist.bind(this);
+    this.modifyWishlist = this.modifyWishlist.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
     notif.add(NEW, this, this.addWishlist);
     notif.add(DEL, this, this.removeWishlist);
+    notif.add(MOD, this, this.modifyWishlist);
   }
 
   componentDidMount() {
@@ -61,6 +63,10 @@ class App extends Component {
         break;
       }
     this.setState({wishlists: listWishlists});
+  }
+
+  modifyWishlist = () => {
+    http.getWishlists().then(wishs => this.setState({wishlists: wishs}));
   }
 
   handleClick(event, click) {
